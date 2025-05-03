@@ -2,7 +2,7 @@ import React from 'react';
 
 const ServicesHero = () => {
   return (
-    <section className="w-full bg-white py-16 md:py-24 relative overflow-hidden">
+    <section className="w-full bg-white py-16 md:py-24 relative overflow-hidden mt-16">
       {/* Background elements */}
       <div className="absolute top-0 right-0">
         <img src="/VoderhostLogoIso.webp" alt="" className="w-64 h-64 opacity-10" />

@@ -2,7 +2,7 @@ import React from 'react';
 
 const HomeHero = () => {
   return (
-    <section className="w-full bg-white py-20 md:py-24">
+    <section className="w-full bg-white py-20 md:py-24 mt-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-center">
           {/* Left side - Text content */}

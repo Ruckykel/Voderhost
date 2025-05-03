@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutHero = () => {
   return (
-    <section className="w-full bg-white py-16 md:py-24 relative overflow-hidden">
+    <section className="w-full bg-white py-16 md:py-24 relative overflow-hidden mt-16">
       
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row gap-10 items-center">

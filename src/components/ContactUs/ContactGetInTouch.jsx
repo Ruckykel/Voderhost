@@ -2,7 +2,7 @@ import React from 'react';
 
 const ContactGetInTouch = () => {
   return (
-    <section className="w-full bg-white py-16 md:py-24 relative overflow-hidden">
+    <section className="w-full bg-white py-16 md:py-24 relative overflow-hidden mt-16">
       {/* Decorative dotted curved line */}
       <div className="absolute bottom-0 left-0 w-full">
         <svg width="100%" height="100" viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">

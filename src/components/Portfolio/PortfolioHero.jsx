@@ -2,7 +2,7 @@ import React from 'react';
 
 const PortfolioHero = () => {
   return (
-    <section className="w-full bg-white py-16 md:py-24 relative overflow-hidden">
+    <section className="w-full bg-white py-16 md:py-24 relative overflow-hidden mt-16">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 opacity-10">
         <svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -18,9 +18,10 @@ export default {
         '102': '1.02',
         '101': '1.01',
       },
+      fontFamily: {
+        sans: ['DM Sans', 'sans-serif'],
+      },
     },
   },
   plugins: [],
 }
-
-

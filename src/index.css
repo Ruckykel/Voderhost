@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Apply DM Sans to entire project */
+body {
+    @apply font-sans;
+  }

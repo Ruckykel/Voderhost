@@ -112,16 +112,51 @@ const WhatWeveBuilt = () => {
     }
   };
 
-  // Animation variants
-  const fadeIn = {
+  // ENHANCED: Section entrance animation - more dramatic and noticeable
+  const sectionEntrance = {
+    hidden: { 
+      opacity: 0,
+      y: 60,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: { 
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1], // Custom cubic-bezier for a more dynamic feel
+        when: "beforeChildren", // Wait for section to animate before starting children
+        staggerChildren: 0.15 // Stagger all child animations
+      }
+    }
+  };
+
+  // ENHANCED: Header animation with staggered children
+  const headerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const headerItem = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.6 }
+      transition: { 
+        duration: 0.6,
+        ease: "easeOut"
+      }
     }
   };
 
+  // ENHANCED: Carousel variants with improved timing and easing
   const carouselVariants = {
     enter: (direction) => ({
       x: direction > 0 ? '100%' : '-100%',
@@ -132,7 +167,7 @@ const WhatWeveBuilt = () => {
       opacity: 1,
       transition: { 
         x: { type: "spring", stiffness: 300, damping: 30 },
-        opacity: { duration: 0.3 }
+        opacity: { duration: 0.4 }
       }
     },
     exit: (direction) => ({
@@ -145,13 +180,15 @@ const WhatWeveBuilt = () => {
     })
   };
 
-  // Icon floating animation
+  // ENHANCED: Improved floating animation for background icons
   const iconFloat = {
     animate: {
-      y: [0, 10, 0],
-      rotate: [0, -5, 0],
+      y: [0, 15, 0],
+      rotate: [0, -8, 0],
+      scale: [1, 1.05, 1],
       transition: {
-        duration: 10,
+        duration: 8,
+        ease: "easeInOut",
         repeat: Infinity,
         repeatType: "reverse"
       }
@@ -186,8 +223,14 @@ const WhatWeveBuilt = () => {
   const visibleProjects = getVisibleProjects();
 
   return (
-    <section className="w-full bg-white pt-16 md:pt-24 pb-20 md:pb-28 relative overflow-hidden">
-      {/* Background icons with animation */}
+    <motion.section 
+      className="w-full bg-white pt-16 md:pt-24 pb-20 md:pb-28 relative overflow-hidden"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={sectionEntrance}
+    >
+      {/* ENHANCED: Multiple animated background elements */}
       <motion.div 
         className="absolute bottom-4 left-4"
         animate="animate"
@@ -195,22 +238,62 @@ const WhatWeveBuilt = () => {
       >
         <img src="/VoderhostLogoIso.webp" alt="" className="w-10 h-10 opacity-30" />
       </motion.div>
+      
+      <motion.div 
+        className="absolute top-4 right-20"
+        animate="animate"
+        variants={iconFloat}
+        custom={2} // Delay for staggered animation
+      >
+        <img src="/VoderhostLogoIso.webp" alt="" className="w-8 h-8 opacity-20" />
+      </motion.div>
+      
+      <motion.div 
+        className="absolute top-40 left-1/4"
+        animate="animate"
+        variants={{
+          animate: {
+            y: [0, 10, 0],
+            x: [0, 5, 0],
+            scale: [1, 0.95, 1],
+            transition: {
+              duration: 12,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatType: "reverse",
+              delay: 1.5
+            }
+          }
+        }}
+      >
+        <img src="/VoderhostLogoIso.webp" alt="" className="w-6 h-6 opacity-15" />
+      </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-10">
-        {/* Header with navigation buttons */}
+        {/* ENHANCED: Header with staggered animation for title and subtitle */}
         <motion.div 
-          className="flex justify-between items-center mb-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeIn}
+          className="flex justify-between items-center mb-12"
+          variants={headerContainer}
         >
           <div>
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-2">What we've built</h2>
-            <p className="text-gray-500 text-sm">From startups to enterprises, we create tailored solutions that drive results.</p>
+            <motion.h2 
+              className="text-3xl md:text-4xl font-semibold text-gray-800 mb-3"
+              variants={headerItem}
+            >
+              What we've built
+            </motion.h2>
+            <motion.p 
+              className="text-gray-500 text-sm"
+              variants={headerItem}
+            >
+              From startups to enterprises, we create tailored solutions that drive results.
+            </motion.p>
           </div>
           
-          <div className="flex space-x-2">
+          <motion.div 
+            className="flex space-x-2"
+            variants={headerItem}
+          >
             <motion.button 
               onClick={navigatePrevious}
               className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-300 transition-colors"
@@ -233,17 +316,18 @@ const WhatWeveBuilt = () => {
                 <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
               </svg>
             </motion.button>
-          </div>
+          </motion.div>
         </motion.div>
 
-        {/* Projects carousel with touch event handlers */}
-        <div 
+        {/* ENHANCED: Projects carousel with improved animation transitions */}
+        <motion.div 
           className="relative overflow-hidden"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
+          variants={headerItem}
         >
-          <div className="relative h-[420px]"> {/* Increased height for the new card design */}
+          <div className="relative h-[420px]">
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
                 key={currentPage}
@@ -256,82 +340,149 @@ const WhatWeveBuilt = () => {
               >
                 <div className="flex space-x-6">
                   {visibleProjects.map((project, index) => (
-                    <ProjectCard 
+                    <motion.div
                       key={`${currentPage}-${project.id}`}
-                      project={project} 
                       className={`
                         ${visibleProjects.length === 1 ? 'w-full' : ''}
                         ${visibleProjects.length === 2 ? 'w-1/2' : ''}
                         ${visibleProjects.length === 3 ? 'w-1/3' : ''}
                       `}
-                    />
+                      variants={{
+                        hidden: { opacity: 0, y: 80 },
+                        visible: { 
+                          opacity: 1, 
+                          y: 0,
+                          transition: { 
+                            duration: 0.6, 
+                            delay: index * 0.25, // Staggered landing on initial page load
+                            ease: [0.25, 1, 0.5, 1] // Bounce ease
+                          }
+                        }
+                      }}
+                    >
+                      <ProjectCard 
+                        project={project} 
+                        index={index}
+                        className="w-full"
+                      />
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
           
-          {/* Navigation dots */}
-          <div className="flex justify-center space-x-2 mt-8">
+          {/* ENHANCED: Navigation dots with better hover effects */}
+          <motion.div 
+            className="flex justify-center space-x-3 mt-10"
+            variants={headerItem}
+          >
             {Array.from({ length: totalPages }).map((_, index) => (
-              <button
+              <motion.button
                 key={index}
                 onClick={() => {
                   setDirection(index > currentPage ? 1 : -1);
                   setCurrentPage(index);
                 }}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  currentPage === index ? 'bg-red-500' : 'bg-gray-300'
+                className={`w-2.5 h-2.5 rounded-full transition-all ${
+                  currentPage === index ? 'bg-red-500 scale-110' : 'bg-gray-300'
                 }`}
+                whileHover={{ scale: 1.3 }}
+                whileTap={{ scale: 0.9 }}
                 aria-label={`Go to page ${index + 1}`}
               />
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
-// Updated ProjectCard component to match the provided design
-const ProjectCard = ({ project, className = "" }) => {
+// ENHANCED: ProjectCard component with internal content animations
+const ProjectCard = ({ project, className = "", index = 0 }) => {
+  // Content animation for card contents
+  const contentVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: (i) => ({ 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.4,
+        delay: 0.1 * i, // Sequential delay for each element
+        ease: "easeOut"
+      }
+    })
+  };
+
   return (
     <motion.div 
       className={`flex-shrink-0 ${className} bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm p-4`}
       whileHover={{ 
-        y: -5,
-        boxShadow: "0 10px 25px rgba(0,0,0,0.05)",
+        y: -8,
+        boxShadow: "0 15px 30px rgba(0,0,0,0.08)",
         transition: { duration: 0.3 }
       }}
     >
-      <h3 className="text-lg font-semibold text-gray-800 mb-3 px-2">{project.name}</h3>
+      <motion.h3 
+        className="text-lg font-semibold text-gray-800 mb-3 px-2"
+        custom={0}
+        initial="hidden"
+        animate="visible"
+        variants={contentVariants}
+      >
+        {project.name}
+      </motion.h3>
       
-      {/* Image with rounded corners */}
-      <div className="rounded-2xl overflow-hidden mb-3">
+      {/* Image with reveal animation */}
+      <motion.div 
+        className="rounded-2xl overflow-hidden mb-3"
+        custom={1}
+        initial="hidden"
+        animate="visible"
+        variants={contentVariants}
+      >
         <img 
           src={project.image} 
           alt={project.name} 
-          className="w-full h-48 object-cover"
+          className="w-full h-48 object-cover transition-transform duration-700 hover:scale-110"
         />
-      </div>
+      </motion.div>
       
-      {/* Description */}
-      <p className="text-gray-500 mb-4 text-sm px-2">{project.description}</p>
+      {/* Description with reveal animation */}
+      <motion.p 
+        className="text-gray-500 mb-4 text-sm px-2"
+        custom={2}
+        initial="hidden"
+        animate="visible"
+        variants={contentVariants}
+      >
+        {project.description}
+      </motion.p>
       
-      {/* View Project button */}
-      <div className="flex px-2">
+      {/* View Project button with reveal and hover animation */}
+      <motion.div 
+        className="flex px-2"
+        custom={3}
+        initial="hidden"
+        animate="visible"
+        variants={contentVariants}
+      >
         <motion.a 
           href="#" 
-          className="inline-flex items-center justify-center text-red-500 hover:text-red-600 border border-red-300 rounded-full px-5 py-2 text-sm font-medium"
-          whileHover={{ scale: 1.03 }}
+          className="inline-flex items-center justify-center text-red-500 hover:text-red-600 border border-red-300 rounded-full px-5 py-2 text-sm font-medium group"
+          whileHover={{ 
+            scale: 1.05,
+            backgroundColor: "rgba(239, 68, 68, 0.05)" 
+          }}
           whileTap={{ scale: 0.98 }}
         >
-          <span className="mr-1">View Project</span>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <span className="mr-2 transition-all duration-300 group-hover:mr-3">View Project</span>
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-all duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </motion.a>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };

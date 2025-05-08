@@ -1,6 +1,79 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const TeamMembers = () => {
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { 
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+        duration: 0.6
+      }
+    }
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.5 }
+    }
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 }
+    }
+  };
+
+  const socialVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.6
+      }
+    }
+  };
+
+  const iconVariants = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { 
+        type: "spring",
+        stiffness: 500,
+        damping: 15 
+      }
+    },
+    hover: { 
+      scale: 1.15,
+      transition: { duration: 0.2 }
+    }
+  };
+
   // Team members data array
   const teamMembers = [
     {
@@ -103,59 +176,163 @@ const TeamMembers = () => {
   );
 
   return (
-    <section className="w-full bg-white py-16 md:py-24 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 opacity-10">
-        <img src="/VoderhostLogoIso.webp" alt="" className="w-48 h-48" />
-      </div>
+    <section className="w-full bg-white py-20 md:py-28 relative overflow-hidden">
+      {/* Background floating icons */}
+      
+      <motion.div 
+        className="absolute bottom-20 right-10"
+        animate={{
+          y: [0, 15, 0],
+          rotate: [0, 8, 0],
+          transition: {
+            duration: 11,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }
+        }}
+      >
+        <img src="/VoderhostLogoIso.webp" alt="" className="w-10 h-10 opacity-30" />
+      </motion.div>
+      
+      <motion.div 
+        className="absolute top-1/3 right-12"
+        animate={{
+          y: [0, 10, 0],
+          rotate: [0, 3, 0],
+          transition: {
+            duration: 7,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }
+        }}
+      >
+        <img src="/VoderhostLogoIso.webp" alt="" className="w-8 h-8 opacity-20" />
+      </motion.div>
+      
+      <motion.div 
+        className="absolute bottom-1/3 left-10"
+        animate={{
+          y: [0, -8, 0],
+          rotate: [0, 5, 0],
+          transition: {
+            duration: 10,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }
+        }}
+      >
+        <img src="/VoderhostLogoIso.webp" alt="" className="w-10 h-10 opacity-20" />
+      </motion.div>
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-10">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+        <motion.div 
+          className="text-center mb-16 md:mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7 }}
+        >
+          <motion.h2 
+            className="text-3xl md:text-4xl font-semibold text-gray-800 mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
             Meet our team members
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            className="text-gray-500 text-sm max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+          >
             Lorem ipsum dolor sit amet consectetur adipiscing elit vulputat gravida
             malesuada quam commodo id integer nam.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Team Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-24"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
           {teamMembers.map((member) => (
-            <div key={member.id} className="flex flex-col items-center">
+            <motion.div 
+              key={member.id} 
+              className="flex flex-col items-center"
+              variants={cardVariants}
+              whileHover={{ y: -5, transition: { duration: 0.3 } }}
+            >
               {/* Member Image */}
-              <div className="rounded-lg overflow-hidden shadow-md mb-4 w-full max-w-xs">
+              <motion.div 
+                className="rounded-lg overflow-hidden shadow-md mb-8 w-full max-w-xs"
+                variants={imageVariants}
+                whileHover={{ 
+                  scale: 1.02, 
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+                  transition: { duration: 0.3 }
+                }}
+              >
                 <img 
                   src={member.image} 
                   alt={member.name} 
                   className="w-full h-auto object-cover aspect-square"
                 />
-              </div>
+              </motion.div>
               
               {/* Member Info */}
-              <h3 className="text-xl font-semibold text-gray-800">{member.name}</h3>
-              <p className="text-gray-600 mb-3">{member.title}</p>
+              <motion.div className='mb-4' variants={textVariants}>
+                <h3 className="text-xl font-semibold text-gray-800 text-center">{member.name}</h3>
+                <p className="text-gray-500 text-sm mb-3 text-center">{member.title}</p>
+              </motion.div>
               
               {/* Social Links */}
-              <div className="flex space-x-3">
-                <a href={member.social.facebook} className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 transition-colors">
+              <motion.div 
+                className="flex space-x-3"
+                variants={socialVariants}
+              >
+                <motion.a 
+                  href={member.social.facebook} 
+                  className="bg-gray-800 text-white p-2 rounded-lg hover:bg-gray-700 transition-colors"
+                  variants={iconVariants}
+                  whileHover="hover"
+                >
                   <FacebookIcon />
-                </a>
-                <a href={member.social.twitter} className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 transition-colors">
+                </motion.a>
+                <motion.a 
+                  href={member.social.twitter} 
+                  className="bg-gray-800 text-white p-2 rounded-lg hover:bg-gray-700 transition-colors"
+                  variants={iconVariants}
+                  whileHover="hover"
+                >
                   <TwitterIcon />
-                </a>
-                <a href={member.social.instagram} className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 transition-colors">
+                </motion.a>
+                <motion.a 
+                  href={member.social.instagram} 
+                  className="bg-gray-800 text-white p-2 rounded-lg hover:bg-gray-700 transition-colors"
+                  variants={iconVariants}
+                  whileHover="hover"
+                >
                   <InstagramIcon />
-                </a>
-                <a href={member.social.linkedin} className="bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 transition-colors">
+                </motion.a>
+                <motion.a 
+                  href={member.social.linkedin} 
+                  className="bg-gray-800 text-white p-2 rounded-lg hover:bg-gray-700 transition-colors"
+                  variants={iconVariants}
+                  whileHover="hover"
+                >
                   <LinkedInIcon />
-                </a>
-              </div>
-            </div>
+                </motion.a>
+              </motion.div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

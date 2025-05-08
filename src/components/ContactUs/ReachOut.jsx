@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const ReachOut = () => {
   // State for tracking selected day
@@ -17,20 +18,45 @@ const ReachOut = () => {
   return (
     <section className="w-full bg-white py-16 md:py-24 relative overflow-hidden">
       {/* Light gray background */}
-      <div className="absolute inset-0 bg-gray-50"></div>
+      <motion.div 
+        className="absolute inset-0 bg-gray-50"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      ></motion.div>
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center">
           {/* Contact Form Card */}
-          <div className="w-full md:w-3/5">
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-800 mb-6">
+          <motion.div 
+            className="w-full md:w-3/5"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.div 
+              className="bg-white rounded-2xl shadow-lg p-8"
+              initial={{ y: 20, boxShadow: "0 0 0 rgba(0,0,0,0)" }}
+              animate={{ y: 0, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <motion.h2 
+                className="text-xl font-semibold text-gray-800 mb-6"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+              >
                 Talk to us—whether you need a quote, project advice, or just a fresh perspective!
-              </h2>
+              </motion.h2>
               
               <form>
                 {/* Name */}
-                <div className="mb-5">
+                <motion.div 
+                  className="mb-5"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.4 }}
+                >
                   <label htmlFor="name" className="block text-gray-700 text-sm font-medium mb-2">Name</label>
                   <input 
                     type="text" 
@@ -39,10 +65,15 @@ const ReachOut = () => {
                     className="w-full px-4 py-3 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     required
                   />
-                </div>
+                </motion.div>
                 
                 {/* Phone and Email (2 columns) */}
-                <div className="flex flex-col sm:flex-row gap-4 mb-5">
+                <motion.div 
+                  className="flex flex-col sm:flex-row gap-4 mb-5"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.5 }}
+                >
                   <div className="w-full sm:w-1/2">
                     <label htmlFor="phone" className="block text-gray-700 text-sm font-medium mb-2">Phone</label>
                     <input 
@@ -62,10 +93,15 @@ const ReachOut = () => {
                       required
                     />
                   </div>
-                </div>
+                </motion.div>
                 
                 {/* Company Name or Website */}
-                <div className="mb-5">
+                <motion.div 
+                  className="mb-5"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.6 }}
+                >
                   <label htmlFor="company" className="block text-gray-700 text-sm font-medium mb-2">Company Name or Website</label>
                   <input 
                     type="text" 
@@ -73,10 +109,15 @@ const ReachOut = () => {
                     placeholder="Company name or website" 
                     className="w-full px-4 py-3 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                </div>
+                </motion.div>
                 
                 {/* Project Description */}
-                <div className="mb-5">
+                <motion.div 
+                  className="mb-5"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.7 }}
+                >
                   <label htmlFor="project" className="block text-gray-700 text-sm font-medium mb-2">Tell us about your project</label>
                   <textarea 
                     id="project" 
@@ -84,10 +125,15 @@ const ReachOut = () => {
                     placeholder="Briefly describe your project" 
                     className="w-full px-4 py-3 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   ></textarea>
-                </div>
+                </motion.div>
                 
                 {/* Budget Dropdown */}
-                <div className="mb-6">
+                <motion.div 
+                  className="mb-6"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.8 }}
+                >
                   <label htmlFor="budget" className="block text-gray-700 text-sm font-medium mb-2">What's your budget?</label>
                   <div className="relative">
                     <select 
@@ -107,79 +153,83 @@ const ReachOut = () => {
                       </svg>
                     </div>
                   </div>
-                </div>
+                </motion.div>
                 
-                {/* Schedule Call Section */}
-                <div className="mb-8">
+                {/* Schedule Call Section - Modified for single line with smaller sizes */}
+                <motion.div 
+                  className="mb-8"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.9 }}
+                >
                   <label className="block text-gray-700 text-sm font-medium mb-3">Schedule a call with us</label>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex justify-between items-center w-full py-2 gap-2">
                     {scheduleDays.map((scheduleDay, index) => (
-                      <button
+                      <motion.button
                         key={index}
                         type="button"
-                        className={`flex flex-col items-center justify-center w-16 h-16 rounded-full text-sm focus:outline-none transition-colors ${
+                        className={`flex flex-col items-center justify-center w-14 h-14 rounded-full text-xs focus:outline-none transition-colors ${
                           selectedDay === index 
                             ? 'bg-red-500 text-white' 
                             : 'bg-red-100 text-gray-700 hover:bg-red-200'
                         }`}
                         onClick={() => setSelectedDay(index)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                       >
                         <span className="font-medium">{scheduleDay.day}</span>
-                        <span className="text-xs">{scheduleDay.date}</span>
-                      </button>
+                        <span className="text-[9px]">{scheduleDay.date}</span>
+                      </motion.button>
                     ))}
                   </div>
-                </div>
+                </motion.div>
                 
                 {/* Submit Button */}
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <button 
                     type="submit" 
                     className="bg-red-500 hover:bg-red-600 text-white font-medium rounded-full px-8 py-3 transition duration-300"
                   >
                     Submit
                   </button>
-                </div>
+                </motion.div>
               </form>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           
-          {/* Right Column - Contact Info */}
-          <div className="w-full md:w-2/5">
-            <div className="max-w-md mx-auto md:mx-0">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+          {/* Right Column - Modified to remove contact details and center on mobile */}
+          <motion.div 
+            className="w-full md:w-2/5"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <div className="text-center md:text-left max-w-md mx-auto md:mx-0 mt-10">
+              <motion.h2 
+                className="text-3xl md:text-4xl font-semibold text-gray-800 mb-2"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+              >
                 Reach Out—We'll Handle the Rest.
-              </h2>
+              </motion.h2>
               
-              <p className="text-gray-600 mb-8">
+              <motion.p 
+                className="text-gray-500 text-sm mb-8"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.5 }}
+              >
                 Have a project in mind? Need a quote or expert advice? Fill out the form, and we'll get back to you within 24 hours.
-              </p>
-              
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-700" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                  </svg>
-                  <span className="text-gray-700">contact@voderhost.com</span>
-                </div>
-                
-                <div className="flex items-center gap-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-700" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                  </svg>
-                  <span className="text-gray-700">(123) 456 - 789</span>
-                </div>
-                
-                <div className="flex items-center gap-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-700" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-gray-700">7, Maryland, Mende<br />Lagos State</span>
-                </div>
-              </div>
+              </motion.p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Products = () => {
   // Products/projects data
@@ -34,81 +35,224 @@ const Products = () => {
   ];
 
   return (
-    <section className="w-full bg-white py-16 md:py-24 relative overflow-hidden">
+    <section className="w-full bg-white pt-16 md:pt-24 pb-28 md:pb-36 relative overflow-hidden">
       {/* Background decorations */}
-      <div className="absolute -top-20 right-40 opacity-10">
+      <motion.div 
+        className="absolute -top-20 right-40 opacity-10"
+        animate={{
+          rotate: [0, 360],
+          transition: {
+            duration: 60,
+            repeat: Infinity,
+            ease: "linear"
+          }
+        }}
+      >
         <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="100" cy="100" r="80" stroke="#dddddd" strokeWidth="1" strokeDasharray="5 5" />
         </svg>
-      </div>
+      </motion.div>
       
-      <div className="absolute -bottom-20 left-40 opacity-10">
+      <motion.div 
+        className="absolute -bottom-20 left-40 opacity-10"
+        animate={{
+          rotate: [360, 0],
+          transition: {
+            duration: 50,
+            repeat: Infinity,
+            ease: "linear"
+          }
+        }}
+      >
         <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="100" cy="100" r="80" stroke="#dddddd" strokeWidth="1" strokeDasharray="5 5" />
         </svg>
-      </div>
+      </motion.div>
       
       {/* Pink/red shape in bottom right */}
-      <div className="absolute bottom-0 right-0 opacity-20">
+      <motion.div 
+        className="absolute bottom-0 right-0 opacity-15"
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ 
+          opacity: 0.15, 
+          x: 0,
+          transition: { 
+            duration: 1,
+            ease: "easeOut"
+          }
+        }}
+      >
         <svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M300 0V300H0C165.685 300 300 165.685 300 0Z" fill="#ff6b6b" />
         </svg>
-      </div>
+      </motion.div>
+
+      {/* Additional decorative elements */}
+      <motion.div
+        className="absolute top-1/3 left-10 opacity-15 hidden md:block"
+        animate={{
+          y: [0, -15, 0],
+          rotate: [0, 5, 0],
+          transition: {
+            duration: 8,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }
+        }}
+      >
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="40" cy="40" r="30" stroke="#ff6b6b" strokeWidth="1" strokeDasharray="4 4" />
+        </svg>
+      </motion.div>
+      
+      <motion.div
+        className="absolute bottom-1/4 right-1/3 opacity-10 hidden lg:block"
+        animate={{
+          y: [0, 10, 0],
+          transition: {
+            duration: 6,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }
+        }}
+      >
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="20" stroke="#ff6b6b" strokeWidth="1" strokeDasharray="3 3" />
+        </svg>
+      </motion.div>
 
       <div className="max-w-7xl mx-auto px-6">
         {/* Projects grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {products.map((product) => (
-            <div 
+            <motion.div 
               key={product.id} 
               className="bg-white rounded-xl shadow-md overflow-hidden transition-all hover:shadow-lg"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ 
+                opacity: 1, 
+                y: 0,
+                transition: {
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 12,
+                  duration: 0.6
+                }
+              }}
+              viewport={{ once: true, margin: "-100px" }}
+              whileHover={{ 
+                y: -5,
+                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                transition: { duration: 0.3 }
+              }}
             >
               {/* Project image */}
-              <div className="w-full h-64 overflow-hidden">
-                <img 
+              <motion.div 
+                className="w-full h-64 overflow-hidden"
+                initial={{ opacity: 0 }}
+                whileInView={{ 
+                  opacity: 1,
+                  transition: { duration: 0.6, delay: 0.2 }
+                }}
+                viewport={{ once: true }}
+              >
+                <motion.img 
                   src={product.image} 
                   alt={product.name} 
                   className="w-full h-full object-cover"
+                  whileHover={{ 
+                    scale: 1.05,
+                    transition: { duration: 0.3 }
+                  }}
                 />
-              </div>
+              </motion.div>
               
               {/* Tags */}
               <div className="px-6 pt-4 pb-2">
                 {product.tags.map((tag, index) => (
-                  <span 
+                  <motion.span 
                     key={index}
                     className="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-medium text-gray-700 mr-2 mb-2"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ 
+                      opacity: 1, 
+                      x: 0,
+                      transition: { 
+                        duration: 0.5, 
+                        delay: 0.3 + (index * 0.1) 
+                      }
+                    }}
+                    viewport={{ once: true }}
+                    whileHover={{ 
+                      backgroundColor: "#fef2f2", 
+                      color: "#ef4444",
+                      transition: { duration: 0.2 } 
+                    }}
                   >
                     {tag}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
               
               {/* Content */}
               <div className="px-6 pb-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                <motion.h3 
+                  className="text-xl font-semibold text-gray-800 mb-6"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
                   {product.name}
-                </h3>
-                <p className="text-gray-600 mb-4">
+                </motion.h3>
+                <motion.p 
+                  className="text-gray-500 text-sm mb-6"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                >
                   {product.description}
-                </p>
+                </motion.p>
                 
                 {/* Explore button */}
-                <div className="flex items-center">
+                <motion.div 
+                  className="flex items-center"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ 
+                    opacity: 1, 
+                    x: 0,
+                    transition: { 
+                      duration: 0.5, 
+                      delay: 0.6 
+                    }
+                  }}
+                  viewport={{ once: true }}
+                  whileHover={{ x: 5 }}
+                >
                   <a 
                     href="#" 
                     className="flex items-center space-x-2 text-red-500 hover:text-red-600 font-medium"
                   >
                     <span>Explore</span>
-                    <div className="w-6 h-6 flex items-center justify-center bg-red-100 rounded-full">
+                    <motion.div 
+                      className="w-6 h-6 flex items-center justify-center bg-red-100 rounded-full"
+                      whileHover={{
+                        x: [0, 3, 0],
+                        transition: { 
+                          duration: 0.6, 
+                          repeat: Infinity 
+                        }
+                      }}
+                    >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                       </svg>
-                    </div>
+                    </motion.div>
                   </a>
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

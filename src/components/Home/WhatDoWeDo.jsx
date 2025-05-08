@@ -36,16 +36,57 @@ const WhatDoWeDo = () => {
     }
   };
 
+  // Icon floating animation
+  const iconFloat = {
+    animate: {
+      y: [0, -10, 0],
+      rotate: [0, 5, 0],
+      transition: {
+        duration: 8,
+        repeat: Infinity,
+        repeatType: "reverse"
+      }
+    }
+  };
+
   return (
-    <section className="w-full bg-[#F9FAFB] py-16 md:py-24 relative overflow-hidden">
-      {/* Background icons with original style */}
-      <div className="absolute -top-4 -right-4">
-        <img src="/VoderhostLogoIso.webp" alt="" className="w-20 h-20 opacity-30" />
-      </div>
+    <section className="w-full bg-[#F9FAFB] py-20 md:py-28 relative overflow-hidden">
+      {/* Background icons with floating animation */}
+      <motion.div 
+        className="absolute top-4 left-5"
+        animate="animate"
+        variants={{
+          animate: {
+            y: [0, -8, 0],
+            rotate: [0, -3, 0],
+            transition: {
+              duration: 9,
+              repeat: Infinity,
+              repeatType: "reverse"
+            }
+          }
+        }}
+      >
+        <img src="/VoderhostLogoIso.webp" alt="" className="w-10 h-10 opacity-30" />
+      </motion.div>
       
-      <div className="absolute -bottom-4 -left-4">
-        <img src="/VoderhostLogoIso.webp" alt="" className="w-20 h-20 opacity-30" />
-      </div>
+      <motion.div 
+        className="absolute bottom-4 right-4"
+        animate="animate"
+        variants={{
+          animate: {
+            y: [0, 10, 0],
+            rotate: [0, -5, 0],
+            transition: {
+              duration: 10,
+              repeat: Infinity,
+              repeatType: "reverse"
+            }
+          }
+        }}
+      >
+        <img src="/VoderhostLogoIso.webp" alt="" className="w-10 h-10 opacity-30" />
+      </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-10">
         {/* Heading and intro with fade-in animation */}
@@ -53,7 +94,7 @@ const WhatDoWeDo = () => {
           className="mb-12 md:mb-16"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
           variants={fadeIn}
         >
           <motion.h2 
@@ -91,7 +132,7 @@ const WhatDoWeDo = () => {
                   boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
                   transition: { duration: 0.3 }
                 }}
-                viewport={{ once: false, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.3 }}
               >
                 <div className="flex items-start mb-4">
                   <motion.img 
@@ -124,7 +165,7 @@ const WhatDoWeDo = () => {
                   boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
                   transition: { duration: 0.3 }
                 }}
-                viewport={{ once: false, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.3 }}
               >
                 <div className="flex items-start mb-4">
                   <motion.img 
@@ -172,7 +213,7 @@ const WhatDoWeDo = () => {
                 boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
                 transition: { duration: 0.3 }
               }}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <div className="flex items-start mb-4">
                 <motion.img 
@@ -203,7 +244,7 @@ const WhatDoWeDo = () => {
                 boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
                 transition: { duration: 0.3 }
               }}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <div className="flex items-start mb-4">
                 <motion.img 
@@ -234,7 +275,7 @@ const WhatDoWeDo = () => {
                 boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
                 transition: { duration: 0.3 }
               }}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <div className="flex items-start mb-4">
                 <motion.img 
@@ -262,7 +303,7 @@ const WhatDoWeDo = () => {
             y: 0, 
             transition: { duration: 0.5 } 
           }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
         >
           <motion.button 
             className="border border-red-500 text-red-500 hover:bg-red-50 font-medium rounded-full px-8 py-3 transition duration-300"

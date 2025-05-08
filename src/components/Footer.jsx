@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
@@ -52,6 +52,35 @@ const Footer = () => {
       transition: { duration: 0.5 }
     }
   };
+
+  // Smooth scroll function for service section navigation
+  const scrollToSection = useCallback((e, sectionId) => {
+    e.preventDefault();
+    
+    // Check if we need to navigate to the services page first
+    const currentPath = window.location.pathname;
+    const isOnServicesPage = currentPath === '/Services' || currentPath === '/services';
+    
+    if (!isOnServicesPage) {
+      // If not on services page, navigate to it first then scroll
+      window.location.href = `/Services#${sectionId}`;
+    } else {
+      // If already on services page, just scroll to section with animation
+      const section = document.getElementById(sectionId);
+      if (section) {
+        window.scrollTo({
+          top: section.offsetTop - 80, // Adjust offset to account for fixed headers
+          behavior: 'smooth',
+        });
+        
+        // Add highlight animation to the section
+        section.classList.add('section-highlight');
+        setTimeout(() => {
+          section.classList.remove('section-highlight');
+        }, 1500);
+      }
+    }
+  }, []);
 
   return (
     <footer className="bg-[#1E1E1E] text-white pt-16 md:pt-24 pb-12 md:pb-16 overflow-hidden">
@@ -162,10 +191,26 @@ const Footer = () => {
               className="space-y-4 text-sm"
               variants={staggerChildren}
             >
-              <motion.li variants={listItemVariant}><a href="/Services#Web&App" className="hover:text-red-500 transition-colors">Website and Web App Development</a></motion.li>
-              <motion.li variants={listItemVariant}><a href="/Services#MobileApp" className="hover:text-red-500 transition-colors">Mobile app development</a></motion.li>
-              <motion.li variants={listItemVariant}><a href="/Services#SEO" className="hover:text-red-500 transition-colors">SEO Optimization</a></motion.li>
-              <motion.li variants={listItemVariant}><a href="/Services#Hosting" className="hover:text-red-500 transition-colors">Hosting Services</a></motion.li>
+              <motion.li variants={listItemVariant}>
+                <a href="/Services#Web&App" onClick={(e) => scrollToSection(e, 'Web&App')} className="hover:text-red-500 transition-colors">
+                  Website and Web App Development
+                </a>
+              </motion.li>
+              <motion.li variants={listItemVariant}>
+                <a href="/Services#MobileApp" onClick={(e) => scrollToSection(e, 'MobileApp')} className="hover:text-red-500 transition-colors">
+                  Mobile app development
+                </a>
+              </motion.li>
+              <motion.li variants={listItemVariant}>
+                <a href="/Services#SEO" onClick={(e) => scrollToSection(e, 'SEO')} className="hover:text-red-500 transition-colors">
+                  SEO Optimization
+                </a>
+              </motion.li>
+              <motion.li variants={listItemVariant}>
+                <a href="/Services#Hosting" onClick={(e) => scrollToSection(e, 'Hosting')} className="hover:text-red-500 transition-colors">
+                  Hosting Services
+                </a>
+              </motion.li>
             </motion.ul>
           </motion.div>
           
@@ -326,10 +371,26 @@ const Footer = () => {
               animate="visible"
               variants={staggerChildren}
             >
-              <motion.li variants={listItemVariant}><a href="/Services#Web&App" className="hover:text-red-500 transition-colors">Website and Web App Development</a></motion.li>
-              <motion.li variants={listItemVariant}><a href="/Services#MobileApp" className="hover:text-red-500 transition-colors">Mobile app development</a></motion.li>
-              <motion.li variants={listItemVariant}><a href="/Services#SEO" className="hover:text-red-500 transition-colors">SEO Optimization</a></motion.li>
-              <motion.li variants={listItemVariant}><a href="/Services#Hosting" className="hover:text-red-500 transition-colors">Hosting Services</a></motion.li>
+              <motion.li variants={listItemVariant}>
+                <a href="/Services#Web&App" onClick={(e) => scrollToSection(e, 'Web&App')} className="hover:text-red-500 transition-colors">
+                  Website and Web App Development
+                </a>
+              </motion.li>
+              <motion.li variants={listItemVariant}>
+                <a href="/Services#MobileApp" onClick={(e) => scrollToSection(e, 'MobileApp')} className="hover:text-red-500 transition-colors">
+                  Mobile app development
+                </a>
+              </motion.li>
+              <motion.li variants={listItemVariant}>
+                <a href="/Services#SEO" onClick={(e) => scrollToSection(e, 'SEO')} className="hover:text-red-500 transition-colors">
+                  SEO Optimization
+                </a>
+              </motion.li>
+              <motion.li variants={listItemVariant}>
+                <a href="/Services#Hosting" onClick={(e) => scrollToSection(e, 'Hosting')} className="hover:text-red-500 transition-colors">
+                  Hosting Services
+                </a>
+              </motion.li>
             </motion.ul>
           </motion.div>
           
@@ -402,6 +463,19 @@ const Footer = () => {
         </motion.div>
         
       </motion.div>
+      
+      {/* Add this style for section highlighting animation */}
+      <style jsx global>{`
+        @keyframes section-highlight-animation {
+          0% { background-color: rgba(255, 0, 0, 0.1); }
+          50% { background-color: rgba(255, 0, 0, 0.2); }
+          100% { background-color: transparent; }
+        }
+        
+        .section-highlight {
+          animation: section-highlight-animation 1.5s ease-out;
+        }
+      `}</style>
     </footer>
   );
 };

@@ -186,15 +186,18 @@ const WhatDoWeDo = () => {
             </div>
 
             {/* CTA Button positioned at the bottom of left column on desktop */}
-            <div className="mt-8 text-left hidden md:block">
-              <motion.button 
-                className="border border-red-500 text-red-500 hover:bg-red-50 font-medium rounded-full px-8 py-3 transition duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Find Out More
-              </motion.button>
-            </div>
+            <a href="/Services">
+             <div className="mt-8 text-left hidden md:block">
+               <motion.button 
+                 className="border border-red-500 text-red-500 hover:bg-red-50 font-medium rounded-full px-8 py-3 transition duration-300"
+                 whileHover={{ scale: 1.05 }}
+                 whileTap={{ scale: 0.95 }}
+               >
+                 Find Out More
+               </motion.button>
+             </div>
+            </a>
+            
           </div>
 
           {/* Right Column - Each item appears on scroll */}

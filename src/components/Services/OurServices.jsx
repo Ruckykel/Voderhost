@@ -122,7 +122,7 @@ const OurServices = () => {
         {/* Services List */}
         <div className="space-y-16">
           {/* Service 1 - Website & Web Application Development */}
-          <div className="flex flex-col md:flex-row items-center gap-8">
+          <div id='Web&App' className="flex flex-col md:flex-row items-center gap-8">
             <motion.div 
               className="w-full md:w-1/2"
               initial="hidden"
@@ -167,7 +167,7 @@ const OurServices = () => {
           </div>
 
           {/* Service 2 - Mobile App Development */}
-          <div className="flex flex-col md:flex-row-reverse items-center gap-8">
+          <div id='MobileApp' className="flex flex-col md:flex-row-reverse items-center gap-8">
             <motion.div 
               className="w-full md:w-1/2"
               initial="hidden"
@@ -212,7 +212,7 @@ const OurServices = () => {
           </div>
 
           {/* Service 3 - Hosting Solutions */}
-          <div className="flex flex-col md:flex-row items-center gap-8">
+          <div id='Hosting' className="flex flex-col md:flex-row items-center gap-8">
             <motion.div 
               className="w-full md:w-1/2"
               initial="hidden"
@@ -257,7 +257,7 @@ const OurServices = () => {
           </div>
 
           {/* Service 4 - SEO & Digital Growth */}
-          <div className="flex flex-col md:flex-row-reverse items-center gap-8">
+          <div id='SEO' className="flex flex-col md:flex-row-reverse items-center gap-8">
             <motion.div 
               className="w-full md:w-1/2"
               initial="hidden"

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
@@ -146,11 +145,11 @@ const Footer = () => {
               className="space-y-4 text-sm"
               variants={staggerChildren}
             >
-              <motion.li variants={listItemVariant}><Link to="/" className="hover:text-red-500 transition-colors">Home</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/services" className="hover:text-red-500 transition-colors">Services</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/about" className="hover:text-red-500 transition-colors">About Us</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/portfolio" className="hover:text-red-500 transition-colors">Portfolio</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/contact" className="hover:text-red-500 transition-colors">Contact Us</Link></motion.li>
+              <motion.li variants={listItemVariant}><a href="/" className="hover:text-red-500 transition-colors">Home</a></motion.li>
+              <motion.li variants={listItemVariant}><a href="/Services" className="hover:text-red-500 transition-colors">Services</a></motion.li>
+              <motion.li variants={listItemVariant}><a href="/About" className="hover:text-red-500 transition-colors">About Us</a></motion.li>
+              <motion.li variants={listItemVariant}><a href="/Portfolio" className="hover:text-red-500 transition-colors">Portfolio</a></motion.li>
+              <motion.li variants={listItemVariant}><a href="/Contact" className="hover:text-red-500 transition-colors">Contact Us</a></motion.li>
             </motion.ul>
           </motion.div>
           
@@ -163,11 +162,10 @@ const Footer = () => {
               className="space-y-4 text-sm"
               variants={staggerChildren}
             >
-              <motion.li variants={listItemVariant}><Link to="/services/web-hosting" className="hover:text-red-500 transition-colors">Web Hosting</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/services/web-app-dev" className="hover:text-red-500 transition-colors">Website and Web App Development</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/services/mobile-app-dev" className="hover:text-red-500 transition-colors">Mobile app development</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/services/seo" className="hover:text-red-500 transition-colors">SEO Optimization</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/services/hosting" className="hover:text-red-500 transition-colors">Hosting Services</Link></motion.li>
+              <motion.li variants={listItemVariant}><a href="/Services#Web&App" className="hover:text-red-500 transition-colors">Website and Web App Development</a></motion.li>
+              <motion.li variants={listItemVariant}><a href="/Services#MobileApp" className="hover:text-red-500 transition-colors">Mobile app development</a></motion.li>
+              <motion.li variants={listItemVariant}><a href="/Services#SEO" className="hover:text-red-500 transition-colors">SEO Optimization</a></motion.li>
+              <motion.li variants={listItemVariant}><a href="/Services#Hosting" className="hover:text-red-500 transition-colors">Hosting Services</a></motion.li>
             </motion.ul>
           </motion.div>
           
@@ -301,11 +299,11 @@ const Footer = () => {
               animate="visible"
               variants={staggerChildren}
             >
-              <motion.li variants={listItemVariant}><Link to="/" className="hover:text-red-500 transition-colors">Home</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/services" className="hover:text-red-500 transition-colors">Services</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/about" className="hover:text-red-500 transition-colors">About Us</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/portfolio" className="hover:text-red-500 transition-colors">Portfolio</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/contact" className="hover:text-red-500 transition-colors">Contact Us</Link></motion.li>
+              <motion.li variants={listItemVariant}><a href="/" className="hover:text-red-500 transition-colors">Home</a></motion.li>
+              <motion.li variants={listItemVariant}><a href="/Services" className="hover:text-red-500 transition-colors">Services</a></motion.li>
+              <motion.li variants={listItemVariant}><a href="/About" className="hover:text-red-500 transition-colors">About Us</a></motion.li>
+              <motion.li variants={listItemVariant}><a href="/Portfolio" className="hover:text-red-500 transition-colors">Portfolio</a></motion.li>
+              <motion.li variants={listItemVariant}><a href="/Contact" className="hover:text-red-500 transition-colors">Contact Us</a></motion.li>
             </motion.ul>
           </motion.div>
           
@@ -328,11 +326,10 @@ const Footer = () => {
               animate="visible"
               variants={staggerChildren}
             >
-              <motion.li variants={listItemVariant}><Link to="/services/web-hosting" className="hover:text-red-500 transition-colors">Web Hosting</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/services/web-app-dev" className="hover:text-red-500 transition-colors">Website and Web App Development</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/services/mobile-app-dev" className="hover:text-red-500 transition-colors">Mobile app development</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/services/seo" className="hover:text-red-500 transition-colors">SEO Optimization</Link></motion.li>
-              <motion.li variants={listItemVariant}><Link to="/services/hosting" className="hover:text-red-500 transition-colors">Hosting Services</Link></motion.li>
+              <motion.li variants={listItemVariant}><a href="/Services#Web&App" className="hover:text-red-500 transition-colors">Website and Web App Development</a></motion.li>
+              <motion.li variants={listItemVariant}><a href="/Services#MobileApp" className="hover:text-red-500 transition-colors">Mobile app development</a></motion.li>
+              <motion.li variants={listItemVariant}><a href="/Services#SEO" className="hover:text-red-500 transition-colors">SEO Optimization</a></motion.li>
+              <motion.li variants={listItemVariant}><a href="/Services#Hosting" className="hover:text-red-500 transition-colors">Hosting Services</a></motion.li>
             </motion.ul>
           </motion.div>
           

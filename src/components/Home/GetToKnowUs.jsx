@@ -96,13 +96,15 @@ const GetToKnowUs = () => {
               className="mt-8"
               variants={textItem}
             >
-              <motion.button 
-                className="border border-red-400 text-red-400 hover:bg-red-50 font-medium rounded-full px-8 py-3 transition duration-300"
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(248, 113, 113, 0.1)" }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Learn More
-              </motion.button>
+              <a href="/About">
+               <motion.button 
+                 className="border border-red-400 text-red-400 hover:bg-red-50 font-medium rounded-full px-8 py-3 transition duration-300"
+                 whileHover={{ scale: 1.05, backgroundColor: "rgba(248, 113, 113, 0.1)" }}
+                 whileTap={{ scale: 0.95 }}
+               >
+                 Learn More
+               </motion.button>
+              </a>
             </motion.div>
           </motion.div>
           

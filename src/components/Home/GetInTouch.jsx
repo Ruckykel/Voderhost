@@ -159,14 +159,16 @@ const GetInTouch = () => {
             <motion.div
               variants={fadeIn}
             >
-              <motion.button 
-                className="bg-red-500 text-white hover:bg-red-600 font-medium rounded-full px-8 py-3 transition duration-300"
-                variants={buttonVariants}
-                whileHover="hover"
-                whileTap="tap"
-              >
-                Contact us
-              </motion.button>
+              <a href="/Contact">
+               <motion.button 
+                 className="bg-red-500 text-white hover:bg-red-600 font-medium rounded-full px-8 py-3 transition duration-300"
+                 variants={buttonVariants}
+                 whileHover="hover"
+                 whileTap="tap"
+               >
+                 Contact us
+               </motion.button>
+              </a>
             </motion.div>
           </motion.div>
           

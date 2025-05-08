@@ -99,12 +99,11 @@ const AboutHero = () => {
               variants={textVariants}
             >
               <p>
-                At VoderHost, we help businesses grow online through custom websites, 
-                mobile apps, hosting, and SEO. As part of MO Group, we create scalable, 
-                user-friendly solutions tailored to your goals. With a client-first mindset
-                and years of experience, we build tech that drives innovation, 
-                engagement, and results — whether you're a startup or an established 
-                brand.
+               At VoderHost, we help businesses grow online through custom websites, mobile apps, hosting, and SEO. As part of MO Group, we create scalable, user-friendly solutions tailored to your goals. With a client-first mindset and years of experience, we build tech that drives innovation, engagement, and results — whether you're a startup or an established brand.
+               We take a hands-on approach from concept to launch, focusing on solutions that are both visually impressive and technically sound. Our team blends creativity with strategy to build responsive websites, seamless mobile apps, and optimized platforms that drive real growth.
+               At VoderHost, we don’t just deliver digital products — we create experiences that connect, convert, and empower your brand to thrive in the digital age.
+
+
               </p>
             </motion.div>
           </motion.div>

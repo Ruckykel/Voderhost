@@ -249,8 +249,7 @@ const TeamMembers = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.4 }}
           >
-            Lorem ipsum dolor sit amet consectetur adipiscing elit vulputat gravida
-            malesuada quam commodo id integer nam.
+            Get to know the talented individuals behind our success — passionate experts dedicated to bringing your ideas to life.
           </motion.p>
         </motion.div>
 

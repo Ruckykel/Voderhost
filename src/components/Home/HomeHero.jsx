@@ -43,7 +43,7 @@ const HomeHero = () => {
               className="text-4xl md:text-5xl font-semibold text-gray-800 leading-tight"
               variants={itemVariants}
             >
-              We Host. Goat.
+              We Host. We Build.
             </motion.h1>
             
             <motion.div 

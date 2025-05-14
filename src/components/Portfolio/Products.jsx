@@ -1,42 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Products = () => {
-  // Products/projects data
+  // Added useEffect to handle hash navigation
+  useEffect(() => {
+    // Check if there's a hash in the URL
+    if (window.location.hash === '#products-section') {
+      // Get the element with the ID
+      const element = document.getElementById('products-section');
+      if (element) {
+        // Wait a bit for animations to complete, then scroll
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 500);
+      }
+    }
+  }, []);
+
+  // Updated products data - only two products with enhanced information
   const products = [
     {
       id: 1,
-      name: 'Proptibank',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus.',
+      name: 'ProptiBaank',
+      description: 'We partnered with ProptiBaank, a real estate platform revolutionizing property ownership for Nigerians in the diaspora and at home. Our team designed and developed a secure, responsive, and intuitive website that supports fractional property ownership, tokenized real estate, and investment tracking.',
       image: '/project-proptibank.png',
-      tags: ['Web', 'E-commerce']
+      projectType: 'Real Estate Investment Platform',
+      deliverables: 'Full-stack Web Development, UX/UI Design, CRM Integration, CMS, Tokenized Property Listings',
+      url: 'www.proptibaank.com',
+      tags: ['Real Estate', 'Web Platform']
     },
     {
       id: 2,
-      name: 'Mo Group',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus.',
+      name: 'MO Group',
+      description: 'MO Group is a dynamic ecosystem of companies spanning real estate, transport, media, and technology. We developed a unified website that captures the essence of each subsidiary while presenting a cohesive corporate identity.',
       image: '/project-proptibank.png',
-      tags: ['Web', 'E-commerce']
-    },
-    {
-      id: 3,
-      name: 'Moonlight',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus.',
-      image: '/project-proptibank.png',
-      tags: ['Web', 'E-commerce']
-    },
-    {
-      id: 4,
-      name: 'Project Name',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus.',
-      image: '/project-proptibank.png',
-      tags: ['Web', 'E-commerce']
+      projectType: 'Corporate Multi-Brand Website',
+      deliverables: 'Multi-Page Website, Brand Architecture, Navigation Flow, CMS, Mobile Optimization',
+      url: 'www.mogroupltd.com',
+      tags: ['Corporate', 'Multi-brand']
     }
   ];
 
   return (
-    <section className="w-full bg-white pt-16 md:pt-24 pb-28 md:pb-36 relative overflow-hidden">
-      {/* Background decorations */}
+    // Added id="products-section" to the section element for hash navigation
+    <section id="products-section" className="w-full bg-white pt-16 md:pt-24 pb-28 md:pb-36 relative overflow-hidden">
+      {/* Background decorations - keeping your original background elements */}
       <motion.div 
         className="absolute -top-20 right-40 opacity-10"
         animate={{
@@ -87,7 +95,7 @@ const Products = () => {
         </svg>
       </motion.div>
 
-      {/* Additional decorative elements */}
+      {/* Additional decorative elements - keeping your original decorations */}
       <motion.div
         className="absolute top-1/3 left-10 opacity-15 hidden md:block"
         animate={{
@@ -122,8 +130,8 @@ const Products = () => {
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-6">
-        {/* Projects grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Projects grid - maintaining your grid structure but with only 2 items */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {products.map((product) => (
             <motion.div 
               key={product.id} 
@@ -146,9 +154,9 @@ const Products = () => {
                 transition: { duration: 0.3 }
               }}
             >
-              {/* Project image */}
+              {/* Project image with enhanced overlay */}
               <motion.div 
-                className="w-full h-64 overflow-hidden"
+                className="relative w-full h-64 overflow-hidden"
                 initial={{ opacity: 0 }}
                 whileInView={{ 
                   opacity: 1,
@@ -165,9 +173,15 @@ const Products = () => {
                     transition: { duration: 0.3 }
                   }}
                 />
+                {/* Overlay with project type */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
+                  <div className="text-white text-sm font-medium">
+                    {product.projectType}
+                  </div>
+                </div>
               </motion.div>
               
-              {/* Tags */}
+              {/* Tags - maintaining your original tag styling */}
               <div className="px-6 pt-4 pb-2">
                 {product.tags.map((tag, index) => (
                   <motion.span 
@@ -194,10 +208,10 @@ const Products = () => {
                 ))}
               </div>
               
-              {/* Content */}
+              {/* Enhanced content section */}
               <div className="px-6 pb-6">
                 <motion.h3 
-                  className="text-xl font-semibold text-gray-800 mb-6"
+                  className="text-xl font-semibold text-gray-800 mb-3"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -206,7 +220,7 @@ const Products = () => {
                   {product.name}
                 </motion.h3>
                 <motion.p 
-                  className="text-gray-500 text-sm mb-6"
+                  className="text-gray-600 text-sm mb-4"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
@@ -215,7 +229,19 @@ const Products = () => {
                   {product.description}
                 </motion.p>
                 
-                {/* Explore button */}
+                {/* Deliverables section - new */}
+                <motion.div
+                  className="mb-5"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                >
+                  <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-2">Deliverables</h4>
+                  <p className="text-gray-500 text-xs">{product.deliverables}</p>
+                </motion.div>
+                
+                {/* Website link - enhanced from your explore button */}
                 <motion.div 
                   className="flex items-center"
                   initial={{ opacity: 0, x: -20 }}
@@ -231,10 +257,12 @@ const Products = () => {
                   whileHover={{ x: 5 }}
                 >
                   <a 
-                    href="#" 
+                    href={`https://${product.url}`} 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center space-x-2 text-red-500 hover:text-red-600 font-medium"
                   >
-                    <span>Explore</span>
+                    <span>Visit Website</span>
                     <motion.div 
                       className="w-6 h-6 flex items-center justify-center bg-red-100 rounded-full"
                       whileHover={{

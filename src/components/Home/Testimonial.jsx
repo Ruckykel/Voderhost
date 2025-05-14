@@ -2,39 +2,35 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Testimonial = () => {
-  // Testimonial data
+  // Updated testimonial data with your real testimonials
   const testimonials = [
     {
       id: 1,
-      quote: "An amazing service",
-      content: "Lorem ipsum dolor sit amet consectetur adipiscing elit ultrices scelerisque mi sed interdum lacus tellus in mi orc netus nisi laoreet phaselius. Pellentesque non nunc placerat mi quis vitae cursus ornare.",
-      name: "John Carter",
-      position: "Small business Owner",
-      image: "/testimonial-image.png"
+      quote: "Working with the team was a game-changer for us",
+      content: "They built a scalable, user-friendly platform that has helped us onboard hundreds of users seamlessly. Their attention to detail and deep understanding of our goals made the entire process smooth and rewarding.",
+      name: "Eng Akingbade Ehinmodu",
+      position: "Project Manager, ProptiBaank"
     },
     {
       id: 2,
-      quote: "Exceeded our expectations",
-      content: "Lorem ipsum dolor sit amet consectetur adipiscing elit ultrices scelerisque mi sed interdum lacus tellus in mi orc netus nisi laoreet phaselius. Pellentesque non nunc placerat mi quis vitae.",
-      name: "Sarah Johnson",
-      position: "Marketing Director",
-      image: "/testimonial-image.png"
+      quote: "We needed a website that could grow with us—and that's exactly what we got",
+      content: "From design to deployment, the entire build was done with scalability in mind. The performance, responsiveness, and backend flexibility are top-notch.",
+      name: "Tunde Alade",
+      position: "Client"
     },
     {
       id: 3,
-      quote: "Professional and reliable",
-      content: "Lorem ipsum dolor sit amet consectetur adipiscing elit ultrices scelerisque mi sed interdum lacus tellus in mi orc netus nisi laoreet phaselius. Pellentesque non nunc placerat mi quis vitae.",
-      name: "Michael Brown",
-      position: "CEO, TechStart",
-      image: "/testimonial-image.png"
+      quote: "We've hosted our site with them for over a year now, and it's been rock solid",
+      content: "Uptime has been great, and their team is always quick to respond to technical requests or sudden needs. Reliable and trustworthy.",
+      name: "Ivie Esemuede",
+      position: "Client"
     },
     {
       id: 4,
-      quote: "Outstanding results",
-      content: "Lorem ipsum dolor sit amet consectetur adipiscing elit ultrices scelerisque mi sed interdum lacus tellus in mi orc netus nisi laoreet phaselius. Pellentesque non nunc placerat mi quis vitae.",
-      name: "Emma Wilson",
-      position: "Product Manager",
-      image: "/testimonial-image.png"
+      quote: "From branding to backend, every aspect of our website was handled professionally",
+      content: "What impressed us the most was how they listened—to what we needed, what we didn’t know we needed, and what our users wanted. They genuinely care about the products they build.",
+      name: "Oluwasegun Dare",
+      position: "Client"
     }
   ];
 
@@ -248,7 +244,9 @@ const Testimonial = () => {
               className="text-gray-500 max-w-xl text-sm mt-2"
               variants={headerVariants}
             >
-              Lorem ipsum dolor sit amet consectetur adipiscing elit semper dolar elementum tempus hac tellus libero
+              At the heart of everything we build is our commitment to delivering value, innovation, and results.
+              But don't just take our word for it—hear directly from the people and companies we've had the privilege to work with.
+              Their feedback reflects the impact of our solutions and the trust we've earned through collaboration, transparency, and excellence.
             </motion.p>
           </div>
           
@@ -342,19 +340,28 @@ const Testimonial = () => {
   );
 };
 
-// Separate TestimonialCard component
+// Updated TestimonialCard component with contact icon instead of image
 const TestimonialCard = ({ testimonial }) => {
   return (
     <div className="bg-white rounded-lg shadow-sm p-6">
-      {/* On mobile: image on top, text below */}
+      {/* On mobile: icon on top, text below */}
       <div className="flex flex-col sm:flex-row items-center sm:items-start">
-        {/* Image - Small and centered on mobile, left-aligned on sm+ screens */}
-        <div className="w-24 mb-4 sm:mb-0 sm:mr-4 sm:w-1/5 flex-shrink-0">
-          <img 
-            src={testimonial.image} 
-            alt={testimonial.name} 
-            className="w-full h-auto rounded-lg"
-          />
+        {/* Contact icon instead of image */}
+        <div className="w-16 h-16 mb-4 sm:mb-0 sm:mr-4 flex-shrink-0 flex items-center justify-center bg-red-100 rounded-full">
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            className="h-8 w-8 text-red-500" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={1.5} 
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" 
+            />
+          </svg>
         </div>
         
         {/* Content - Full width on mobile */}

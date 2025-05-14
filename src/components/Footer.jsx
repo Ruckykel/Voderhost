@@ -224,18 +224,18 @@ const Footer = () => {
               variants={staggerChildren}
             >
               <motion.li variants={listItemVariant}>
-                <a href="mailto:support@voderhost.com" className="hover:text-red-500 transition-colors">
-                  support@voderhost.com
+                <a href="mailto:voderhost@gmail.com" className="hover:text-red-500 transition-colors">
+                  voderhost@gmail.com
                 </a>
               </motion.li>
               <motion.li variants={listItemVariant}>
-                <a href="tel:0123456789" className="hover:text-red-500 transition-colors">
-                  0123456789
+                <a href="tel:+2347068705597" className="hover:text-red-500 transition-colors">
+                  +2347068705597
                 </a>
               </motion.li>
               <motion.li variants={listItemVariant}>
                 <span className="text-white">
-                  Lagos,Nigeria
+                  Ulmenweg 16, 72076, Tubingen, Germany
                 </span>
               </motion.li>
               <motion.li variants={listItemVariant}>
@@ -414,18 +414,18 @@ const Footer = () => {
               variants={staggerChildren}
             >
               <motion.li variants={listItemVariant}>
-                <a href="mailto:support@voderhost.com" className="hover:text-red-500 transition-colors">
-                  support@voderhost.com
+                <a href="mailto:voderhost@gmail.com" className="hover:text-red-500 transition-colors">
+                  voderhost@gmail.com
                 </a>
               </motion.li>
               <motion.li variants={listItemVariant}>
-                <a href="tel:0123456789" className="hover:text-red-500 transition-colors">
-                  0123456789
+                <a href="tel:+2347068705597" className="hover:text-red-500 transition-colors">
+                  +2347068705597
                 </a>
               </motion.li>
               <motion.li variants={listItemVariant}>
                 <span className="text-white">
-                  Lagos,Nigeria
+                  Ulmenweg 16, 72076, Tubingen, Germany
                 </span>
               </motion.li>
               <motion.li variants={listItemVariant}>
@@ -458,7 +458,7 @@ const Footer = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.5 }}
           >
-            <p>Copyright © 2025 Voderhost | All Rights Reserved</p>
+            <p>Copyright © 2025 Vodertech | All Rights Reserved</p>
           </motion.div>
         </motion.div>
         

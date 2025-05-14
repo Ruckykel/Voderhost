@@ -84,7 +84,7 @@ const GetToKnowUs = () => {
             
             <div className="text-gray-500 space-y-4 text-sm">
               <motion.p variants={textItem}>
-              At VoderHost, we help businesses grow online through custom websites, mobile apps, hosting, and SEO.
+              At VoderTech, we help businesses grow online through custom websites, mobile apps, hosting, and SEO.
               As part of MO Group, we create scalable, user-friendly solutions tailored to your goals.
               With a client-first mindset and years of experience, we build tech that drives innovation,
               engagement, and results — whether you're a startup or an established brand.

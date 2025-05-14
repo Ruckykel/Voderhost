@@ -107,7 +107,7 @@ const WhatDoWeDo = () => {
             className="text-gray-500 max-w-3xl text-sm"
             variants={fadeIn}
           >
-            VoderHost is a software development company under MO Group, specializing in website development,
+            VoderTech is a software development company under MO Group, specializing in website development,
             web applications, mobile app development, and SEO optimization for businesses and individuals.
             It provides custom software solutions, helping brands establish a strong digital presence with modern, scalable,
             and user-friendly technology.

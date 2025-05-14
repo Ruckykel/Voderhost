@@ -1,44 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link as RouterLink } from 'react-router-dom'; // Import RouterLink for navigation between pages
 
 const WhatWeveBuilt = () => {
-  // Projects data
+  // Updated projects data with only two projects and real descriptions
   const projects = [
     {
       id: 1,
-      name: 'Proptibaank',
+      name: 'ProptiBaank',
       image: '/project-image.png',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus.'
+      projectType: 'Real Estate Investment Platform',
+      description: 'We partnered with ProptiBaank, a real estate platform revolutionizing property ownership for Nigerians in the diaspora and at home. Our team designed and developed a secure, responsive, and intuitive website.',
+      deliverables: 'Full-stack Web Development, UX/UI Design, CRM Integration',
+      // Changed to pathname and hash for cross-page scrolling
+      path: '/portfolio#products-section'
     },
     {
       id: 2,
-      name: 'Mo Group',
+      name: 'MO Group',
       image: '/project-image.png',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus.'
-    },
-    {
-      id: 3,
-      name: 'Moonlight',
-      image: '/project-image.png',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus.'
-    },
-    {
-      id: 4,
-      name: 'Project Four',
-      image: '/project-image2.png',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus.'
-    },
-    {
-      id: 5,
-      name: 'Project Five',
-      image: '/project-image2.png',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus.'
-    },
-    {
-      id: 6,
-      name: 'Project Six',
-      image: '/project-image2.png',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus.'
+      projectType: 'Corporate Multi-Brand Website',
+      description: 'MO Group is a dynamic ecosystem of companies spanning real estate, transport, media, and technology. We developed a unified website that captures the essence of each subsidiary.',
+      deliverables: 'Multi-Page Website, Brand Architecture, Navigation Flow',
+      // Changed to pathname and hash for cross-page scrolling
+      path: '/portfolio#products-section'
     }
   ];
 
@@ -56,13 +41,9 @@ const WhatWeveBuilt = () => {
     if (typeof window !== 'undefined' && window.innerWidth < 640) {
       return projects.length;
     }
-    // For medium screens: show 2 at a time, so pages = ceil(total/2)
-    else if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      return Math.ceil(projects.length / 2);
-    }
-    // For large screens: show 3 at a time, so pages = ceil(total/3)
+    // For medium screens and up: always one page since we show both projects
     else {
-      return Math.ceil(projects.length / 3);
+      return 1;
     }
   };
   
@@ -112,7 +93,7 @@ const WhatWeveBuilt = () => {
     }
   };
 
-  // ENHANCED: Section entrance animation - more dramatic and noticeable
+  // Section entrance animation
   const sectionEntrance = {
     hidden: { 
       opacity: 0,
@@ -125,14 +106,14 @@ const WhatWeveBuilt = () => {
       scale: 1,
       transition: { 
         duration: 0.8,
-        ease: [0.22, 1, 0.36, 1], // Custom cubic-bezier for a more dynamic feel
-        when: "beforeChildren", // Wait for section to animate before starting children
-        staggerChildren: 0.15 // Stagger all child animations
+        ease: [0.22, 1, 0.36, 1],
+        when: "beforeChildren",
+        staggerChildren: 0.15
       }
     }
   };
 
-  // ENHANCED: Header animation with staggered children
+  // Header animation with staggered children
   const headerContainer = {
     hidden: { opacity: 0 },
     visible: {
@@ -156,7 +137,7 @@ const WhatWeveBuilt = () => {
     }
   };
 
-  // ENHANCED: Carousel variants with improved timing and easing
+  // Carousel variants with improved timing and easing
   const carouselVariants = {
     enter: (direction) => ({
       x: direction > 0 ? '100%' : '-100%',
@@ -180,7 +161,7 @@ const WhatWeveBuilt = () => {
     })
   };
 
-  // ENHANCED: Improved floating animation for background icons
+  // Improved floating animation for background icons
   const iconFloat = {
     animate: {
       y: [0, 15, 0],
@@ -197,26 +178,13 @@ const WhatWeveBuilt = () => {
 
   // Get visible projects based on current page and screen size
   const getVisibleProjects = () => {
-    // For small screens - 1 project per view
+    // For all screen sizes, respect the pagination
     if (typeof window !== 'undefined' && window.innerWidth < 640) {
+      // For small screens - 1 project per view
       return [projects[currentPage % projects.length]];
-    }
-    // For medium screens - 2 projects per view
-    else if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      const startIndex = (currentPage * 2) % projects.length;
-      return [
-        projects[startIndex],
-        projects[(startIndex + 1) % projects.length]
-      ].filter(Boolean); // Filter in case we hit the end
-    }
-    // For large screens - 3 projects per view
-    else {
-      const startIndex = (currentPage * 3) % projects.length;
-      return [
-        projects[startIndex],
-        projects[(startIndex + 1) % projects.length],
-        projects[(startIndex + 2) % projects.length]
-      ].filter(Boolean); // Filter in case we hit the end
+    } else {
+      // For medium screens and up - both projects
+      return projects;
     }
   };
 
@@ -224,13 +192,13 @@ const WhatWeveBuilt = () => {
 
   return (
     <motion.section 
-      className="w-full bg-white pt-16 md:pt-24 pb-20 md:pb-28 relative overflow-hidden"
+      className="w-full bg-white pt-16 md:pt-24 pb-28 md:pb-32 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
       variants={sectionEntrance}
     >
-      {/* ENHANCED: Multiple animated background elements */}
+      {/* Animated background elements */}
       <motion.div 
         className="absolute bottom-4 left-4"
         animate="animate"
@@ -243,7 +211,7 @@ const WhatWeveBuilt = () => {
         className="absolute top-4 right-20"
         animate="animate"
         variants={iconFloat}
-        custom={2} // Delay for staggered animation
+        custom={2}
       >
         <img src="/VoderhostLogoIso.webp" alt="" className="w-8 h-8 opacity-20" />
       </motion.div>
@@ -270,56 +238,59 @@ const WhatWeveBuilt = () => {
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-10">
-        {/* ENHANCED: Header with staggered animation for title and subtitle */}
+        {/* Header with staggered animation for title and subtitle */}
         <motion.div 
-          className="flex justify-between items-center mb-12"
+          className="mb-12"
           variants={headerContainer}
         >
-          <div>
-            <motion.h2 
-              className="text-3xl md:text-4xl font-semibold text-gray-800 mb-3"
+          <div className="flex justify-between items-center">
+            <div>
+              <motion.h2 
+                className="text-3xl md:text-4xl font-semibold text-gray-800 mb-3"
+                variants={headerItem}
+              >
+                What we've built
+              </motion.h2>
+              <motion.p 
+                className="text-gray-500 text-sm"
+                variants={headerItem}
+              >
+                From startups to enterprises, we create tailored solutions that drive results.
+              </motion.p>
+            </div>
+            
+            {/* Navigation controls - always on the right */}
+            <motion.div 
+              className="flex space-x-3"
               variants={headerItem}
             >
-              What we've built
-            </motion.h2>
-            <motion.p 
-              className="text-gray-500 text-sm"
-              variants={headerItem}
-            >
-              From startups to enterprises, we create tailored solutions that drive results.
-            </motion.p>
+              <motion.button 
+                onClick={navigatePrevious}
+                className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-300 transition-colors"
+                aria-label="Previous page"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </motion.button>
+              <motion.button 
+                onClick={navigateNext}
+                className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-500 flex items-center justify-center text-white hover:bg-red-600 transition-colors"
+                aria-label="Next page"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                </svg>
+              </motion.button>
+            </motion.div>
           </div>
-          
-          <motion.div 
-            className="flex space-x-2"
-            variants={headerItem}
-          >
-            <motion.button 
-              onClick={navigatePrevious}
-              className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-300 transition-colors"
-              aria-label="Previous page"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-              </svg>
-            </motion.button>
-            <motion.button 
-              onClick={navigateNext}
-              className="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center text-white hover:bg-red-600 transition-colors"
-              aria-label="Next page"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-              </svg>
-            </motion.button>
-          </motion.div>
         </motion.div>
 
-        {/* ENHANCED: Projects carousel with improved animation transitions */}
+        {/* Projects carousel with improved animation transitions */}
         <motion.div 
           className="relative overflow-hidden"
           onTouchStart={handleTouchStart}
@@ -327,7 +298,7 @@ const WhatWeveBuilt = () => {
           onTouchEnd={handleTouchEnd}
           variants={headerItem}
         >
-          <div className="relative h-[420px]">
+          <div className="relative min-h-[480px] sm:min-h-[520px]">
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
                 key={currentPage}
@@ -338,15 +309,10 @@ const WhatWeveBuilt = () => {
                 exit="exit"
                 className="absolute w-full"
               >
-                <div className="flex space-x-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
                   {visibleProjects.map((project, index) => (
                     <motion.div
                       key={`${currentPage}-${project.id}`}
-                      className={`
-                        ${visibleProjects.length === 1 ? 'w-full' : ''}
-                        ${visibleProjects.length === 2 ? 'w-1/2' : ''}
-                        ${visibleProjects.length === 3 ? 'w-1/3' : ''}
-                      `}
                       variants={{
                         hidden: { opacity: 0, y: 80 },
                         visible: { 
@@ -354,8 +320,8 @@ const WhatWeveBuilt = () => {
                           y: 0,
                           transition: { 
                             duration: 0.6, 
-                            delay: index * 0.25, // Staggered landing on initial page load
-                            ease: [0.25, 1, 0.5, 1] // Bounce ease
+                            delay: index * 0.25,
+                            ease: [0.25, 1, 0.5, 1]
                           }
                         }
                       }}
@@ -372,24 +338,24 @@ const WhatWeveBuilt = () => {
             </AnimatePresence>
           </div>
           
-          {/* ENHANCED: Navigation dots with better hover effects */}
+          {/* Navigation dots in a fixed position below content */}
           <motion.div 
-            className="flex justify-center space-x-3 mt-10"
+            className="flex justify-center space-x-4 pt-12 mt-4 clear-both"
             variants={headerItem}
           >
-            {Array.from({ length: totalPages }).map((_, index) => (
+            {projects.map((_, index) => (
               <motion.button
                 key={index}
                 onClick={() => {
-                  setDirection(index > currentPage ? 1 : -1);
+                  setDirection(index > currentPage % projects.length ? 1 : -1);
                   setCurrentPage(index);
                 }}
-                className={`w-2.5 h-2.5 rounded-full transition-all ${
-                  currentPage === index ? 'bg-red-500 scale-110' : 'bg-gray-300'
+                className={`w-2 h-2 rounded-full transition-all ${
+                  currentPage % projects.length === index ? 'bg-red-500 scale-110' : 'bg-gray-300'
                 }`}
                 whileHover={{ scale: 1.3 }}
                 whileTap={{ scale: 0.9 }}
-                aria-label={`Go to page ${index + 1}`}
+                aria-label={`Go to project ${index + 1}`}
               />
             ))}
           </motion.div>
@@ -399,7 +365,7 @@ const WhatWeveBuilt = () => {
   );
 };
 
-// ENHANCED: ProjectCard component with internal content animations
+// Enhanced ProjectCard component with React Router Link
 const ProjectCard = ({ project, className = "", index = 0 }) => {
   // Content animation for card contents
   const contentVariants = {
@@ -409,7 +375,7 @@ const ProjectCard = ({ project, className = "", index = 0 }) => {
       y: 0,
       transition: {
         duration: 0.4,
-        delay: 0.1 * i, // Sequential delay for each element
+        delay: 0.1 * i,
         ease: "easeOut"
       }
     })
@@ -417,13 +383,27 @@ const ProjectCard = ({ project, className = "", index = 0 }) => {
 
   return (
     <motion.div 
-      className={`flex-shrink-0 ${className} bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm p-4`}
+      className={`flex-shrink-0 ${className} bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm p-4 h-full flex flex-col`}
       whileHover={{ 
         y: -8,
         boxShadow: "0 15px 30px rgba(0,0,0,0.08)",
         transition: { duration: 0.3 }
       }}
     >
+      <motion.div
+        className="mb-2 px-2"
+        custom={0}
+        initial="hidden"
+        animate="visible"
+        variants={contentVariants}
+      >
+        <motion.span 
+          className="text-xs font-medium text-red-500 uppercase tracking-wider"
+        >
+          {project.projectType}
+        </motion.span>
+      </motion.div>
+      
       <motion.h3 
         className="text-lg font-semibold text-gray-800 mb-3 px-2"
         custom={0}
@@ -460,28 +440,47 @@ const ProjectCard = ({ project, className = "", index = 0 }) => {
         {project.description}
       </motion.p>
       
-      {/* View Project button with reveal and hover animation */}
+      {/* Deliverables */}
       <motion.div 
-        className="flex px-2"
+        className="mb-4 px-2"
         custom={3}
         initial="hidden"
         animate="visible"
         variants={contentVariants}
       >
-        <motion.a 
-          href="#" 
-          className="inline-flex items-center justify-center text-red-500 hover:text-red-600 border border-red-300 rounded-full px-5 py-2 text-sm font-medium group"
-          whileHover={{ 
-            scale: 1.05,
-            backgroundColor: "rgba(239, 68, 68, 0.05)" 
-          }}
-          whileTap={{ scale: 0.98 }}
+        <h4 className="text-xs font-semibold text-gray-700 uppercase tracking-wider mb-1">Deliverables</h4>
+        <p className="text-gray-500 text-xs">{project.deliverables}</p>
+      </motion.div>
+      
+      {/* Spacer */}
+      <div className="flex-grow"></div>
+      
+      {/* Modified: Now using React Router Link instead of anchor or react-scroll */}
+      <motion.div 
+        className="flex px-2"
+        custom={4}
+        initial="hidden"
+        animate="visible"
+        variants={contentVariants}
+      >
+        <RouterLink 
+          to={project.path}
+          className="inline-flex items-center justify-center text-red-500 hover:text-red-600 border border-red-300 rounded-full px-5 py-2 text-sm font-medium group cursor-pointer"
         >
-          <span className="mr-2 transition-all duration-300 group-hover:mr-3">View Project</span>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-all duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </motion.a>
+          <motion.div
+            whileHover={{ 
+              scale: 1.05,
+              backgroundColor: "rgba(239, 68, 68, 0.05)" 
+            }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center"
+          >
+            <span className="mr-2 transition-all duration-300 group-hover:mr-3">View Details</span>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-all duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </motion.div>
+        </RouterLink>
       </motion.div>
     </motion.div>
   );

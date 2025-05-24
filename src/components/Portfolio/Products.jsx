@@ -21,23 +21,23 @@ const Products = () => {
   const products = [
     {
       id: 1,
-      name: 'ProptiBaank',
-      description: 'We partnered with ProptiBaank, a real estate platform revolutionizing property ownership for Nigerians in the diaspora and at home. Our team designed and developed a secure, responsive, and intuitive website that supports fractional property ownership, tokenized real estate, and investment tracking.',
+      name: 'Proptibaank',
+      description: 'We partnered with ProptiBaank, a real estate platform revolutionizing property ownership for Nigerians in the diaspora and at home. Our team designed and developed a secure, responsive, and intuitive website that supports fractional property ownership, tokenized real estate, and investment tracking. We also built backend systems for property listings, automated ROI calculations, user onboarding, and CRM integration. The result is a robust platform that makes real estate investment accessible and transparent.',
       image: '/project-proptibank.png',
       projectType: 'Real Estate Investment Platform',
       deliverables: 'Full-stack Web Development, UX/UI Design, CRM Integration, CMS, Tokenized Property Listings',
       url: 'www.proptibaank.com',
-      tags: ['Real Estate', 'Web Platform']
+      tags: ['Real Estate Investment Platform', 'UX/UI Design', 'Tokenized Property Listings', 'Full-stack Web Development', 'CRM Integration', 'CMS']
     },
     {
       id: 2,
       name: 'MO Group',
-      description: 'MO Group is a dynamic ecosystem of companies spanning real estate, transport, media, and technology. We developed a unified website that captures the essence of each subsidiary while presenting a cohesive corporate identity.',
+      description: 'MO Group is a dynamic ecosystem of companies spanning real estate, transport, media, and technology. We developed a unified website that captures the essence of each subsidiary while presenting a cohesive corporate identity. The site includes detailed service pages, company overviews, and contact funnels, all managed via a flexible CMS. Our solution highlights MO Group\'s innovation and impact, with a modern design optimized for performance across devices.',
       image: '/project-proptibank.png',
       projectType: 'Corporate Multi-Brand Website',
       deliverables: 'Multi-Page Website, Brand Architecture, Navigation Flow, CMS, Mobile Optimization',
       url: 'www.mogroupltd.com',
-      tags: ['Corporate', 'Multi-brand']
+      tags: ['Multi-Page Website', 'Brand Architecture', 'Navigation Flow', 'CMS', 'Mobile Optimization']
     }
   ];
 

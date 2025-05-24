@@ -60,7 +60,7 @@ const HomeHero = () => {
               className="text-sm text-gray-600 mt-6 mb-6 leading-relaxed max-w-lg md:mx-0 mx-auto"
               variants={itemVariants}
             >
-              We build digital solutions that don't just exist — they perform. From 
+              We build digital solutions that don't just exist — they perform. From
               pixel-perfect websites to rock-solid hosting, we help your product show 
               up and shine.
             </motion.p>

@@ -35,15 +35,15 @@ const WhatWeveBuilt = () => {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   
-  // Get number of pages based on screen size
+  // Get number of pages based on screen size and number of projects
   const getPageCount = () => {
     // For small screens: show 1 at a time, so pages = total projects
     if (typeof window !== 'undefined' && window.innerWidth < 640) {
       return projects.length;
     }
-    // For medium screens and up: always one page since we show both projects
+    // For medium screens and up: calculate based on projects per page (2)
     else {
-      return 1;
+      return Math.ceil(projects.length / 2);
     }
   };
   
@@ -53,35 +53,43 @@ const WhatWeveBuilt = () => {
   useEffect(() => {
     const handleResize = () => {
       setTotalPages(getPageCount());
+      // Reset to first page if current page exceeds new total
+      setCurrentPage(prev => Math.min(prev, getPageCount() - 1));
     };
     
     window.addEventListener('resize', handleResize);
     handleResize(); // Initial call
     
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [projects.length]);
 
   // Navigation functions
   const navigatePrevious = () => {
+    if (totalPages <= 1) return; // Don't navigate if only one page
     setDirection(-1);
     setCurrentPage((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
   };
 
   const navigateNext = () => {
+    if (totalPages <= 1) return; // Don't navigate if only one page
     setDirection(1);
     setCurrentPage((prev) => (prev === totalPages - 1 ? 0 : prev + 1));
   };
   
   // Touch handlers for swipe functionality
   const handleTouchStart = (e) => {
+    if (totalPages <= 1) return; // Don't handle swipe if only one page
     setTouchStart(e.targetTouches[0].clientX);
   };
   
   const handleTouchMove = (e) => {
+    if (totalPages <= 1) return; // Don't handle swipe if only one page
     setTouchEnd(e.targetTouches[0].clientX);
   };
   
   const handleTouchEnd = () => {
+    if (totalPages <= 1) return; // Don't handle swipe if only one page
+    
     if (touchStart - touchEnd > 50) {
       // Swipe left, go next
       navigateNext();
@@ -178,13 +186,13 @@ const WhatWeveBuilt = () => {
 
   // Get visible projects based on current page and screen size
   const getVisibleProjects = () => {
-    // For all screen sizes, respect the pagination
     if (typeof window !== 'undefined' && window.innerWidth < 640) {
-      // For small screens - 1 project per view
+      // For small screens - 1 project per page
       return [projects[currentPage % projects.length]];
     } else {
-      // For medium screens and up - both projects
-      return projects;
+      // For medium screens and up - show 2 projects per page
+      const startIndex = currentPage * 2;
+      return projects.slice(startIndex, startIndex + 2);
     }
   };
 
@@ -259,34 +267,36 @@ const WhatWeveBuilt = () => {
               </motion.p>
             </div>
             
-            {/* Navigation controls - always on the right */}
-            <motion.div 
-              className="flex space-x-3"
-              variants={headerItem}
-            >
-              <motion.button 
-                onClick={navigatePrevious}
-                className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-300 transition-colors"
-                aria-label="Previous page"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+            {/* Navigation controls - only show if there are multiple pages */}
+            {totalPages > 1 && (
+              <motion.div 
+                className="flex space-x-3"
+                variants={headerItem}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-              </motion.button>
-              <motion.button 
-                onClick={navigateNext}
-                className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-500 flex items-center justify-center text-white hover:bg-red-600 transition-colors"
-                aria-label="Next page"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                </svg>
-              </motion.button>
-            </motion.div>
+                <motion.button 
+                  onClick={navigatePrevious}
+                  className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-300 transition-colors"
+                  aria-label="Previous page"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </motion.button>
+                <motion.button 
+                  onClick={navigateNext}
+                  className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-500 flex items-center justify-center text-white hover:bg-red-600 transition-colors"
+                  aria-label="Next page"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                  </svg>
+                </motion.button>
+              </motion.div>
+            )}
           </div>
         </motion.div>
 
@@ -299,66 +309,97 @@ const WhatWeveBuilt = () => {
           variants={headerItem}
         >
           <div className="relative min-h-[480px] sm:min-h-[520px]">
-            <AnimatePresence initial={false} custom={direction} mode="wait">
-              <motion.div
-                key={currentPage}
-                custom={direction}
-                variants={carouselVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                className="absolute w-full"
-              >
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
-                  {visibleProjects.map((project, index) => (
-                    <motion.div
-                      key={`${currentPage}-${project.id}`}
-                      variants={{
-                        hidden: { opacity: 0, y: 80 },
-                        visible: { 
-                          opacity: 1, 
-                          y: 0,
-                          transition: { 
-                            duration: 0.6, 
-                            delay: index * 0.25,
-                            ease: [0.25, 1, 0.5, 1]
+            {totalPages > 1 ? (
+              <AnimatePresence initial={false} custom={direction} mode="wait">
+                <motion.div
+                  key={currentPage}
+                  custom={direction}
+                  variants={carouselVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  className="absolute w-full"
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
+                    {visibleProjects.map((project, index) => (
+                      <motion.div
+                        key={`${currentPage}-${project.id}`}
+                        variants={{
+                          hidden: { opacity: 0, y: 80 },
+                          visible: { 
+                            opacity: 1, 
+                            y: 0,
+                            transition: { 
+                              duration: 0.6, 
+                              delay: index * 0.25,
+                              ease: [0.25, 1, 0.5, 1]
+                            }
                           }
+                        }}
+                      >
+                        <ProjectCard 
+                          project={project} 
+                          index={index}
+                          className="w-full"
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            ) : (
+              // Static display when there's only one page
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
+                {visibleProjects.map((project, index) => (
+                  <motion.div
+                    key={project.id}
+                    variants={{
+                      hidden: { opacity: 0, y: 80 },
+                      visible: { 
+                        opacity: 1, 
+                        y: 0,
+                        transition: { 
+                          duration: 0.6, 
+                          delay: index * 0.25,
+                          ease: [0.25, 1, 0.5, 1]
                         }
-                      }}
-                    >
-                      <ProjectCard 
-                        project={project} 
-                        index={index}
-                        className="w-full"
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                      }
+                    }}
+                  >
+                    <ProjectCard 
+                      project={project} 
+                      index={index}
+                      className="w-full"
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            )}
           </div>
           
-          {/* Navigation dots in a fixed position below content */}
-          <motion.div 
-            className="flex justify-center space-x-4 pt-12 mt-4 clear-both"
-            variants={headerItem}
-          >
-            {projects.map((_, index) => (
-              <motion.button
-                key={index}
-                onClick={() => {
-                  setDirection(index > currentPage % projects.length ? 1 : -1);
-                  setCurrentPage(index);
-                }}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  currentPage % projects.length === index ? 'bg-red-500 scale-110' : 'bg-gray-300'
-                }`}
-                whileHover={{ scale: 1.3 }}
-                whileTap={{ scale: 0.9 }}
-                aria-label={`Go to project ${index + 1}`}
-              />
-            ))}
-          </motion.div>
+          {/* Navigation dots - only show if there are multiple pages */}
+          {totalPages > 1 && (
+            <motion.div 
+              className="flex justify-center space-x-4 pt-12 mt-4 clear-both"
+              variants={headerItem}
+            >
+              {Array.from({ length: totalPages }).map((_, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => {
+                    setDirection(index > currentPage ? 1 : -1);
+                    setCurrentPage(index);
+                  }}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    currentPage === index ? 'bg-red-500 scale-110' : 'bg-gray-300'
+                  }`}
+                  whileHover={{ scale: 1.3 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label={`Go to page ${index + 1}`}
+                />
+              ))}
+            </motion.div>
+          )}
         </motion.div>
       </div>
     </motion.section>

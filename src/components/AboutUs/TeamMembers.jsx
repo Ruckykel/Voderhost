@@ -92,7 +92,7 @@ const TeamMembers = () => {
       id: 2,
       name: 'Sophie Moore',
       title: 'CTO & Co-Founder',
-      image: '/team-john.png',
+      image: '/team-sophie.png',
       social: {
         facebook: '#',
         twitter: '#',
@@ -104,7 +104,7 @@ const TeamMembers = () => {
       id: 3,
       name: 'Matt Cannon',
       title: 'Head Designer',
-      image: '/team-john.png',
+      image: '/team-cannon.png',
       social: {
         facebook: '#',
         twitter: '#',
@@ -116,7 +116,7 @@ const TeamMembers = () => {
       id: 4,
       name: 'Andy Smith',
       title: 'Head of Front End',
-      image: '/team-john.png',
+      image: '/team-andy.png',
       social: {
         facebook: '#',
         twitter: '#',
@@ -128,7 +128,7 @@ const TeamMembers = () => {
       id: 5,
       name: 'Lily Woods',
       title: 'Project Manager',
-      image: '/team-john.png',
+      image: '/team-lily.png',
       social: {
         facebook: '#',
         twitter: '#',
@@ -140,7 +140,7 @@ const TeamMembers = () => {
       id: 6,
       name: 'Patrick Joyce',
       title: 'VP of Sales',
-      image: '/team-john.png',
+      image: '/team-patrick.png',
       social: {
         facebook: '#',
         twitter: '#',

@@ -9,7 +9,7 @@ const WhatWeveBuilt = () => {
     {
       id: 1,
       name: 'ProptiBaank',
-      image: '/project-image.png',
+      image: '/project-image-proptibank.png',
       projectType: 'Real Estate Investment Platform',
       description: 'We partnered with ProptiBaank, a real estate platform revolutionizing property ownership for Nigerians in the diaspora and at home. Our team designed and developed a secure, responsive, and intuitive website.',
       deliverables: 'Full-stack Web Development, UX/UI Design, CRM Integration',
@@ -19,7 +19,7 @@ const WhatWeveBuilt = () => {
     {
       id: 2,
       name: 'MO Group',
-      image: '/project-image.png',
+      image: '/project-image-mogroup.png',
       projectType: 'Corporate Multi-Brand Website',
       description: 'MO Group is a dynamic ecosystem of companies spanning real estate, transport, media, and technology. We developed a unified website that captures the essence of each subsidiary.',
       deliverables: 'Multi-Page Website, Brand Architecture, Navigation Flow',

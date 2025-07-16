@@ -33,7 +33,7 @@ const Products = () => {
       id: 2,
       name: 'MO Group',
       description: 'MO Group is a dynamic ecosystem of companies spanning real estate, transport, media, and technology. We developed a unified website that captures the essence of each subsidiary while presenting a cohesive corporate identity. The site includes detailed service pages, company overviews, and contact funnels, all managed via a flexible CMS. Our solution highlights MO Group\'s innovation and impact, with a modern design optimized for performance across devices.',
-      image: '/project-proptibank.png',
+      image: '/project-mogroup.png',
       projectType: 'Corporate Multi-Brand Website',
       deliverables: 'Multi-Page Website, Brand Architecture, Navigation Flow, CMS, Mobile Optimization',
       url: 'www.mogroupltd.com',

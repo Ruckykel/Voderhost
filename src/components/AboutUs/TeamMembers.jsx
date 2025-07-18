@@ -78,9 +78,9 @@ const TeamMembers = () => {
   const teamMembers = [
     {
       id: 1,
-      name: 'John Carter',
-      title: 'CEO & Co-Founder',
-      image: '/team-john.png',
+      name: 'Ademola Adetunji',
+      title: 'Chief Executive Officer',
+      image: '/team-ademola.png',
       social: {
         facebook: '#',
         twitter: '#',
@@ -90,45 +90,69 @@ const TeamMembers = () => {
     },
     {
       id: 2,
-      name: 'Sophie Moore',
-      title: 'CTO & Co-Founder',
-      image: '/team-sophie.png',
+      name: 'Akintayo Oluyinka E.',
+      title: 'Full Stack Developer',
+      image: '/team-akintayo.png',
       social: {
         facebook: '#',
         twitter: '#',
         instagram: '#',
-        linkedin: '#'
+        linkedin: 'https://www.linkedin.com/in/oluyinka-akintayo-835a17a9'
       }
     },
     {
       id: 3,
-      name: 'Matt Cannon',
-      title: 'Head Designer',
-      image: '/team-cannon.png',
+      name: 'Adejola Esther',
+      title: 'Project Manager',
+      image: '/team-adejola.png',
       social: {
         facebook: '#',
         twitter: '#',
         instagram: '#',
-        linkedin: '#'
+        linkedin: 'https://www.linkedin.com/in/esther-adejola-497a621b7/'
       }
     },
     {
       id: 4,
-      name: 'Andy Smith',
-      title: 'Head of Front End',
+      name: 'Christopher Egbaaibon',
+      title: 'Backend / DevOps Engineer',
       image: '/team-andy.png',
       social: {
         facebook: '#',
         twitter: '#',
         instagram: '#',
-        linkedin: '#'
+        linkedin: 'http://linkedin.com/in/christopher-egbaaibon-02701120a/'
       }
     },
     {
       id: 5,
-      name: 'Lily Woods',
-      title: 'Project Manager',
-      image: '/team-lily.png',
+      name: 'Opeyemi Abiodun',
+      title: 'Frontend Developer',
+      image: '/team-opeyemi.png',
+      social: {
+        facebook: '#',
+        twitter: '#',
+        instagram: '#',
+        linkedin: 'https://www.linkedin.com/in/opeyemi-abiodun-aa327920a/'
+      }
+    },
+    {
+      id: 6,
+      name: 'Adetomiwa Adewunmi',
+      title: 'Product Designer',
+      image: '/team-adetomiwa.png',
+      social: {
+        facebook: '#',
+        twitter: '#',
+        instagram: '#',
+        linkedin: 'https://www.linkedin.com/in/goad%C3%A9/'
+      }
+    },
+    {
+      id: 7,
+      name: 'Nnaji Favour',
+      title: 'Frontend Developer',
+      image: '/team-nnaji.png',
       social: {
         facebook: '#',
         twitter: '#',
@@ -137,17 +161,29 @@ const TeamMembers = () => {
       }
     },
     {
-      id: 6,
-      name: 'Patrick Joyce',
-      title: 'VP of Sales',
-      image: '/team-patrick.png',
+      id: 8,
+      name: 'Bobade Ayobami',
+      title: 'UiUx / Product Designer',
+      image: '/team-bobade.png',
       social: {
         facebook: '#',
         twitter: '#',
         instagram: '#',
-        linkedin: '#'
+        linkedin: 'https://www.linkedin.com/in/ayobami-bobade-57678024a?trk=contact-info'
       }
-    }
+    },
+    {
+      id: 9,
+      name: 'Ovuoba Chiagozie',
+      title: 'Backend Developer',
+      image: '/team-ovuoba.png',
+      social: {
+        facebook: '#',
+        twitter: '#',
+        instagram: '#',
+        linkedin: 'https://www.linkedin.com/in/chiagozie-ovuoba-77bb24268'
+      }
+    },
   ];
 
   // Social media icon components

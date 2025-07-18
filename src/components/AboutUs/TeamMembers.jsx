@@ -116,7 +116,7 @@ const TeamMembers = () => {
       id: 4,
       name: 'Christopher Egbaaibon',
       title: 'Backend / DevOps Engineer',
-      image: '/team-andy.png',
+      image: '/team-christopher.png',
       social: {
         facebook: '#',
         twitter: '#',

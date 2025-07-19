@@ -332,30 +332,7 @@ const TeamMembers = () => {
                 className="flex space-x-3"
                 variants={socialVariants}
               >
-                <motion.a 
-                  href={member.social.facebook} 
-                  className="bg-gray-800 text-white p-2 rounded-lg hover:bg-gray-700 transition-colors"
-                  variants={iconVariants}
-                  whileHover="hover"
-                >
-                  <FacebookIcon />
-                </motion.a>
-                <motion.a 
-                  href={member.social.twitter} 
-                  className="bg-gray-800 text-white p-2 rounded-lg hover:bg-gray-700 transition-colors"
-                  variants={iconVariants}
-                  whileHover="hover"
-                >
-                  <TwitterIcon />
-                </motion.a>
-                <motion.a 
-                  href={member.social.instagram} 
-                  className="bg-gray-800 text-white p-2 rounded-lg hover:bg-gray-700 transition-colors"
-                  variants={iconVariants}
-                  whileHover="hover"
-                >
-                  <InstagramIcon />
-                </motion.a>
+                
                 <motion.a 
                   href={member.social.linkedin} 
                   className="bg-gray-800 text-white p-2 rounded-lg hover:bg-gray-700 transition-colors"
